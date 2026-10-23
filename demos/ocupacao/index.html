@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="../_comum/relogio-demo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ocupação | Demo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="../_comum/chart.umd.min.js"></script>
+<script src="../_comum/chartjs-plugin-datalabels.min.js"></script>
+<script>
+document.write('<link rel="stylesheet" href="styles.css?v=' + Date.now() + '">');
+</script>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="top-card">
+    <header class="header">
+      <div class="header-left">
+        <img src="../_comum/logo-demo.svg" alt="Demonstração com dados fictícios">
+      </div>
+      <div class="header-title">
+        <h1>Ocupação</h1>
+        <span>Demonstração · dados fictícios</span>
+      </div>
+      <div class="header-right">
+        <button type="button" class="btn-limpar" id="limpar-filtro" hidden title="Limpar filtro (Esc)">Limpar filtro ✕</button>
+        <div class="legenda-status" id="legenda-status" aria-label="Legenda de cores"></div>
+        <div class="updated-tag" id="updated-tag">Atualizando…</div>
+      </div>
+    </header>
+  </div>
+
+  <main class="dash">
+
+    <section class="grupos" id="grupos"></section>
+
+    <section class="pesos">
+      <div class="card chart-panel">
+        <div class="chart-panel-title">
+          <span class="titulo-bloco"><small>Peso · 7 dias</small>Entrada</span>
+          <span class="chart-resumo" id="resumo-chart-ent"></span>
+          <span class="chart-legend-inline">
+            <span><i class="dot recebido"></i> Recebido (t)</span>
+            <span><i class="dot entregue"></i> Entregue (t)</span>
+          </span>
+        </div>
+        <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-ent"><canvas id="chart-ent"></canvas></div></div>
+      </div>
+
+      <div class="card chart-panel">
+        <div class="chart-panel-title">
+          <span class="titulo-bloco"><small>Peso · 7 dias</small>Saída</span>
+          <span class="chart-resumo" id="resumo-chart-sai"></span>
+          <span class="chart-legend-inline">
+            <span><i class="dot recebido"></i> Recebido (t)</span>
+            <span><i class="dot entregue"></i> Entregue (t)</span>
+          </span>
+        </div>
+        <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-sai"><canvas id="chart-sai"></canvas></div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
+</script>
+<script>
+document.write('<script src="app.js?v=' + Date.now() + '"><\/script>');
+</script>
+</body>
+</html>

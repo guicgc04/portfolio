@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cauã Chiaradia | Automação e dados</title>
+  <meta name="description" content="Portfólio de Cauã Chiaradia: automações em Python e dashboards em código, com demos interativas usando dados fictícios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+  <a class="skip" href="#portfolio">Pular para os projetos</a>
+  <!-- PILULA:INICIO -->
+    <nav class="pilula" aria-label="Atalhos"><a href="#inicio" data-nome="Início" data-secao="inicio" aria-label="Início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg></a><a href="#sobre" data-nome="Sobre mim" data-secao="sobre" aria-label="Sobre mim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a><a href="#trajetoria" data-nome="Trajetória" data-secao="trajetoria" aria-label="Trajetória"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M9 7V4h6v3M3 13h18"/></svg></a><a href="#portfolio" data-nome="Portfólio" data-secao="portfolio" aria-label="Portfólio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></a><a href="#ferramentas" data-nome="Ferramentas" data-secao="ferramentas" aria-label="Ferramentas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></a><a href="#contato" data-nome="Contato" data-secao="contato" aria-label="Contato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></a></nav>
+    <!-- PILULA:FIM -->
+
+  <header class="hero" id="inicio">
+    <div class="hero__texto">
+      <p class="hero__ola">Olá! Eu sou</p>
+      <h1 class="hero__nome">Cauã <span>Chiaradia</span></h1>
+      <span class="tag hero__papel">Analista de Processos e Melhoria</span>
+      <p class="hero__sub">Transformo processos manuais em soluções que rodam sozinhas. Desenvolvo automações, pipelines de dados e dashboards em código que entregam informação confiável, na hora certa, para as equipes decidirem melhor.</p>
+      <div class="hero__acoes">
+        <a class="btn" href="#portfolio">Ver o portfólio →</a>
+        <a class="btn btn--linha" href="#sobre">Sobre mim</a>
+      </div>
+    </div>
+    <div class="hero__painel">
+      <p class="monograma" aria-hidden="true">C<span>C</span></p>
+      <img class="hero__foto" src="img/caua-recorte.webp" alt="Foto de Cauã Chiaradia" width="768" height="959" fetchpriority="high">
+      <p class="hero__canto">Portfólio · Guarulhos, SP</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- LADO:INICIO -->
+    <aside class="lado">
+      <a class="lado__topo" href="#inicio" aria-label="Início">
+        <img class="lado__foto" src="img/caua-mini.webp" alt="" width="96" height="96">
+        <span class="lado__nome">Cauã Chiaradia</span>
+        <span class="lado__cargo">Processos · Dados · Automação</span>
+      </a>
+      <nav class="lado__nav" aria-label="Seções">
+        <ol>
+          <li><a href="#inicio" class="ativo" data-secao="inicio">Início</a></li>
+          <li><a href="#sobre" data-secao="sobre">Sobre mim</a></li>
+          <li><a href="#trajetoria" data-secao="trajetoria">Trajetória</a></li>
+          <li><a href="#portfolio" data-secao="portfolio">Portfólio</a></li>
+          <li><a href="#ferramentas" data-secao="ferramentas">Ferramentas</a></li>
+          <li><a href="#contato" data-secao="contato">Contato</a></li>
+        </ol>
+      </nav>
+    </aside>
+    <!-- LADO:FIM -->
+
+    <main class="conteudo">
+      <section class="secao" id="sobre" aria-labelledby="sobre-titulo">
+        <div class="largura">
+          <h2 class="titulo-caixa" id="sobre-titulo">Sobre mim</h2>
+          <p class="sobre__lead">Do chão da <strong>operação</strong> para o <strong>código</strong>.</p>
+          <p class="sobre__texto">Comecei na base e fui promovido até chegar a analista. Essa vivência me ensinou a enxergar onde o processo trava e o que realmente faz diferença para quem está na ponta. Hoje uso esse olhar para criar soluções que eliminam horas de trabalho manual e deixam a gestão mais rápida e baseada em dados. No desenvolvimento, uso IA generativa (Claude Code) como apoio para ganhar produtividade.</p>
+          <div class="sobre__grade">
+            <div class="numeros surge">
+              <div><b>8</b><span>Dashboards em código</span></div>
+              <div><b>4</b><span>Automações em uso</span></div>
+              <div><b>12</b><span>Projetos no portfólio</span></div>
+              <div><b>3</b><span>Promoções na carreira</span></div>
+            </div>
+            <div>
+              <h3 class="faco__titulo">O que eu faço?</h3>
+              <ul class="faco">
+                <li>
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="14" width="30" height="24" rx="3"/><path d="M24 14V8M20 8h8M17 24h2M29 24h2M18 31h12M5 22v8M43 22v8"/></svg>
+                  <div><strong>Automação (RPA)</strong><p>Robôs em Python e Selenium que assumem o trabalho repetitivo.</p></div>
+                </li>
+                <li>
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><ellipse cx="24" cy="11" rx="14" ry="5"/><path d="M10 11v26c0 2.8 6.3 5 14 5s14-2.2 14-5V11M10 20c0 2.8 6.3 5 14 5s14-2.2 14-5M10 29c0 2.8 6.3 5 14 5s14-2.2 14-5"/></svg>
+                  <div><strong>Dados (ETL)</strong><p>Pipelines que coletam, limpam e cruzam os dados dos sistemas.</p></div>
+                </li>
+                <li>
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="38" height="26" rx="2"/><path d="M17 42h14M24 34v8M12 27l7-8 6 5 10-10"/></svg>
+                  <div><strong>Dashboards em código</strong><p>Painéis em JavaScript com atualização automática, que funcionam em qualquer dispositivo.</p></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao secao--branca" id="trajetoria" aria-labelledby="trajetoria-titulo">
+        <div class="largura">
+          <h2 class="titulo-caixa" id="trajetoria-titulo">Trajetória</h2>
+          <div class="trilha">
+            <p class="kicker trilha__titulo">Experiência</p>
+            <ol>
+              <li class="surge"><span class="tag">Até 2025</span><h3>Auxiliar Operacional</h3><p>JSL · Guarulhos</p></li>
+              <li class="surge"><span class="tag">2025</span><h3>Inspetor de Carga</h3><p>JSL · Guarulhos</p></li>
+              <li class="surge"><span class="tag">2025 – 2026</span><h3>Assistente de Qualidade</h3><p>JSL · Guarulhos</p></li>
+              <li class="surge agora"><span class="tag">Desde abr. 2026</span><h3>Analista de Processos e Melhoria</h3><p>JSL · Guarulhos</p></li>
+            </ol>
+          </div>
+          <div class="trilha">
+            <p class="kicker trilha__titulo">Formação</p>
+            <ol>
+              <li class="surge"><span class="tag tag--escura">2024 – 2028</span><h3>Engenharia de Software</h3><p>Centro Universitário ENIAC</p></li>
+              <li class="surge"><span class="tag tag--escura">2022 – 2023</span><h3>Técnico em Informática para Internet</h3><p>Conselheiro Crispiniano</p></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="portfolio" aria-labelledby="portfolio-titulo">
+        <div class="largura">
+          <h2 class="titulo-caixa" id="portfolio-titulo">Portfólio</h2>
+          <p class="intro">Cada dashboard é o mesmo que roda na operação, alimentado por dados inventados. Clique para abrir e explorar.</p>
+          <div class="filtros" role="group" aria-label="Filtrar projetos">
+            <button type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+            <button type="button" data-filtro="operacao" aria-pressed="false">Operação</button>
+            <button type="button" data-filtro="gestao" aria-pressed="false">Gestão</button>
+            <button type="button" data-filtro="automacao" aria-pressed="false">Automação</button>
+          </div>
+          <div class="cards">
+          <!-- DASHBOARDS:INICIO -->
+          <a class="card surge" data-cat="operacao" href="projetos/performance-turnos.html">
+            <span class="card__painel"><span class="kicker">Tempo real</span><span class="card__num">01</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">Performance Operacional</span>
+              <span class="card__desc">Os indicadores de prazo da operação, turno a turno, com atualização automática.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="operacao" href="projetos/hora-a-hora.html">
+            <span class="card__painel"><span class="kicker">Hora a hora</span><span class="card__num">02</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">SLAs Hora a Hora</span>
+              <span class="card__desc">Cada indicador quebrado por hora: o que entrou, o que saiu no prazo e o que atrasou.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="gestao" href="projetos/sla-consolidado.html">
+            <span class="card__painel"><span class="kicker">Mensal</span><span class="card__num">03</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">SLA Consolidado Mensal</span>
+              <span class="card__desc">A fotografia do mês: acumulado, tendência e se ainda dá para bater cada meta.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="operacao" href="projetos/produtividade-linhas.html">
+            <span class="card__painel"><span class="kicker">Conferência</span><span class="card__num">04</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">Produtividade por Linha</span>
+              <span class="card__desc">Desempenho de cada linha de conferência, por hora, viagem e palete.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="operacao" href="projetos/ocupacao.html">
+            <span class="card__painel"><span class="kicker">Armazém</span><span class="card__num">05</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">Ocupação do Armazém</span>
+              <span class="card__desc">Quanto de cada área do armazém está ocupado, com alerta por cor e histórico.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="gestao" href="projetos/tonelagem.html">
+            <span class="card__painel"><span class="kicker">Volume</span><span class="card__num">06</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">Tonelagem</span>
+              <span class="card__desc">Peso movimentado por dia e a projeção do mês contra a meta de volume.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="gestao" href="projetos/frotas.html">
+            <span class="card__painel"><span class="kicker">Financeiro</span><span class="card__num">07</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">Frotas · Financeiro</span>
+              <span class="card__desc">Quanto custa manter cada equipamento: por mês, categoria, tipo de manutenção e fornecedor.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <a class="card surge" data-cat="gestao" href="projetos/gestao-operacional.html">
+            <span class="card__painel"><span class="kicker">Liderança</span><span class="card__num">08</span><span class="card__seta" aria-hidden="true">→</span></span>
+            <span class="card__corpo">
+              <span class="card__titulo">Gestão Operacional</span>
+              <span class="card__desc">Ranking gamificado das lideranças em Processos, Pessoas e Segurança.</span>
+              <span class="card__mais">Explorar demo →</span>
+            </span>
+          </a>
+          <!-- DASHBOARDS:FIM -->
+            <button type="button" class="card card--auto surge" data-cat="automacao" data-case="rpa">
+              <span class="card__painel"><span class="kicker">RPA</span><span class="card__num">09</span><span class="card__seta" aria-hidden="true">→</span></span>
+              <span class="card__corpo"><span class="card__titulo">Robô de documentação</span><span class="card__desc">Coleta, valida e envia documentos para portais externos, sem trabalho manual.</span><span class="card__mais">Como funciona →</span></span>
+            </button>
+            <button type="button" class="card card--auto surge" data-cat="automacao" data-case="bot">
+              <span class="card__painel"><span class="kicker">Coleta de dados</span><span class="card__num">10</span><span class="card__seta" aria-hidden="true">→</span></span>
+              <span class="card__corpo"><span class="card__titulo">Extração de relatórios</span><span class="card__desc">Um robô baixa e organiza os relatórios diários que alimentam os dashboards.</span><span class="card__mais">Como funciona →</span></span>
+            </button>
+            <button type="button" class="card card--auto surge" data-cat="automacao" data-case="web">
+              <span class="card__painel"><span class="kicker">Web</span><span class="card__num">11</span><span class="card__seta" aria-hidden="true">→</span></span>
+              <span class="card__corpo"><span class="card__titulo">Portal de indicadores</span><span class="card__desc">Um lugar único, com login e permissões, para cada área ver os seus dashboards.</span><span class="card__mais">Como funciona →</span></span>
+            </button>
+            <button type="button" class="card card--auto surge" data-cat="automacao" data-case="flx">
+              <span class="card__painel"><span class="kicker">Power Platform</span><span class="card__num">12</span><span class="card__seta" aria-hidden="true">→</span></span>
+              <span class="card__corpo"><span class="card__titulo">Fluxos de controle</span><span class="card__desc">Formulários e fluxos que atualizam estoques e avisam os responsáveis na hora.</span><span class="card__mais">Como funciona →</span></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="secao secao--branca" id="ferramentas" aria-labelledby="ferramentas-titulo">
+        <div class="largura">
+          <h2 class="titulo-caixa" id="ferramentas-titulo">Ferramentas</h2>
+          <dl class="stack">
+            <div class="surge"><dt>Linguagens</dt><dd>Python, SQL, JavaScript</dd></div>
+            <div class="surge"><dt>Dados</dt><dd>Pandas, openpyxl, ETL, Chart.js</dd></div>
+            <div class="surge"><dt>Automação</dt><dd>Selenium, Power Automate, Power Apps</dd></div>
+            <div class="surge"><dt>Desenvolvimento</dt><dd>Git, GitHub, Claude Code, VS Code</dd></div>
+          </dl>
+          <div class="certs">
+            <h3 class="kicker">Certificados</h3>
+            <ul>
+              <li class="surge"><strong>Carreira Desenvolvimento Back-End Python</strong><span>Alura · 2025</span></li>
+              <li class="surge"><strong>Power Automate</strong><span>Alura · 2025</span></li>
+              <li class="surge"><strong>Carreira Análise de Dados</strong><span>Alura · 2026</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="contato" aria-labelledby="contato-titulo">
+        <div class="largura">
+          <h2 class="titulo-caixa" id="contato-titulo">Contato</h2>
+          <div class="contato">
+            <div class="contato__texto">
+              <p>Fique à vontade para <strong>falar comigo</strong>.</p>
+              <p>Estou aberto a trocar ideias sobre automação, dados e melhoria de processos.</p>
+            </div>
+            <ul class="contato__lista">
+              <li><a href="https://www.linkedin.com/in/guilherme-cau%C3%A3-genova-chiaradia-0ba5562b8/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="4"/><path d="M15 21v13M15 14v.5M22 34V21M22 27c0-4 3-6 6-6s5 2 5 6v7"/></svg>
+                <span><b>LinkedIn</b><span>Cauã Chiaradia</span></span></a></li>
+              <li><a href="https://github.com/guicgc04" target="_blank" rel="noopener">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 16h38M15 24l-4 4 4 4M33 24l4 4-4 4M27 22l-6 12"/></svg>
+                <span><b>GitHub</b><span>guicgc04</span></span></a></li>
+            </ul>
+          </div>
+          <p class="obrigado">Obrigado pela visita!</p>
+        </div>
+      </section>
+
+      <footer class="rodape">
+        <span>Cauã Chiaradia · Guarulhos, SP</span>
+        <span>Todos os dados das demos são fictícios</span>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="case" id="case" aria-labelledby="case-title">
+    <div class="case__topo">
+      <span class="tag" id="case-tag"></span>
+      <h3 id="case-title"></h3>
+      <button type="button" class="case__close" aria-label="Fechar">×</button>
+    </div>
+    <div class="case__grid">
+      <div>
+        <p class="kicker">O problema</p><p id="case-problem"></p>
+        <p class="kicker">A solução</p><p id="case-solution"></p>
+        <p class="kicker">Resultado</p><p id="case-result"></p>
+      </div>
+      <div>
+        <p class="kicker">Etapas</p>
+        <ol class="passos" id="case-steps"></ol>
+        <p class="kicker">Stack</p>
+        <p id="case-stack"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="comum.js?v=5"></script>
+  <script src="script.js?v=5"></script>
+</body>
+</html>

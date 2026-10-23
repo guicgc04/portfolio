@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="../_comum/relogio-demo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acompanhamento SLAs Hora x Hora | portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="../_comum/chart.umd.min.js"></script>
+<script src="../_comum/chartjs-plugin-datalabels.min.js" onerror="console.warn('datalabels CDN indisponivel')"></script>
+<script>
+document.write('<link rel="stylesheet" href="styles.css?v=' + Date.now() + '">');
+</script>
+</head>
+<body>
+
+<div class="page" id="tv-root">
+
+  <div class="top-card">
+
+    <header class="header">
+      <div class="header-left">
+        <img src="../_comum/logo-demo.svg" alt="Demonstração com dados fictícios">
+      </div>
+      <div class="header-title">
+        <h1>Acompanhamento SLAs Hora x Hora</h1>
+        <span id="header-subtitle">Demonstração · dados fictícios</span>
+      </div>
+      <div class="header-right">
+        <select class="filtro-select day-select" id="sel-dia"></select>
+        <div class="updated-tag" id="updated-tag">Atualizando…</div>
+      </div>
+    </header>
+
+    <div class="chart-box">
+
+      <div class="chart-header">
+        <div class="kpi-col">
+          <div class="kpi-card">
+            <div class="kpi-label">Entrada</div>
+            <div class="kpi-value" id="kpi-entrada">–</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">% Atendimento</div>
+            <div class="kpi-value" id="kpi-pct">–</div>
+          </div>
+        </div>
+
+        <div class="kpi-col">
+          <div class="kpi-card">
+            <div class="kpi-label">Dentro da Meta</div>
+            <div class="kpi-value ok" id="kpi-dentro">–</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Atrasado</div>
+            <div class="kpi-value nok" id="kpi-fora">–</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-area">
+        <canvas id="grafico-main"></canvas>
+        <div id="sem-dado-msg" class="sem-dado-msg">Sem dados para o período selecionado</div>
+      </div>
+
+      <div class="legend" id="legend">
+        <span><i class="leg-box" style="background:#16a34a"></i>Dentro da Meta</span>
+        <span><i class="leg-box" style="background:#dc2626"></i>Atrasado</span>
+        <span><i class="leg-line" style="background:#3d6be4"></i>Entrada Total</span>
+        <span><i class="leg-line" style="background:#c8172f;border-top:2px dashed #c8172f;height:0"></i>Meta %</span>
+      </div>
+
+      <div class="kpi-bottom-row" id="kpi-bottom-row">
+        <div class="kpi-card kpi-card-wide">
+          <div class="kpi-label">% Atendimento</div>
+          <div class="kpi-value" id="kpi-pct-b">–</div>
+        </div>
+        <div class="kpi-card kpi-card-wide">
+          <div class="kpi-label">Entrada</div>
+          <div class="kpi-value" id="kpi-entrada-b">–</div>
+        </div>
+        <div class="kpi-card kpi-card-wide">
+          <div class="kpi-label">Dentro da Meta</div>
+          <div class="kpi-value ok" id="kpi-dentro-b">–</div>
+        </div>
+        <div class="kpi-card kpi-card-wide">
+          <div class="kpi-label">Atrasado</div>
+          <div class="kpi-value nok" id="kpi-fora-b">–</div>
+        </div>
+        <div class="kpi-card kpi-card-wide">
+          <div class="kpi-label">% Necessária</div>
+          <div class="kpi-value meta" id="kpi-meta-b">–</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-row">
+
+    <div class="origem-card">
+      <div class="origem-header">Origem</div>
+      <div class="origem-scroll">
+        <table class="origem-table" id="origem-table"></table>
+      </div>
+
+      <div class="filters-row">
+        <div class="filter-item">
+          <div class="filter-item-label">Tipo</div>
+          <select class="filtro-select" id="sel-tipo"><option value="">Todos</option></select>
+        </div>
+        <div class="filter-item">
+          <div class="filter-item-label">Turno</div>
+          <select class="filtro-select" id="sel-turno">
+            <option value="">Todos</option>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+          </select>
+        </div>
+        <div class="filter-item" id="filtro-sub-wrap" style="display:none;">
+          <div class="filter-item-label">Sub-categoria</div>
+          <select class="filtro-select" id="sel-sub">
+            <option value="geral">Geral</option>
+            <option value="padrao">Pedido padrão</option>
+            <option value="expresso">Pedido expresso</option>
+          </select>
+        </div>
+        <div class="filter-item filter-item-kpi">
+          <div class="filter-item-label">% Necessária</div>
+          <div class="kpi-value meta" id="kpi-meta">–</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<nav class="tab-bar" id="tab-bar"></nav>
+
+<script>
+(function() {
+  var v = Date.now();
+  document.write('<script src="data.js?v=' + v + '"><\/script>');
+  document.write('<script src="app.js?v=' + v + '"><\/script>');
+})();
+</script>
+</body>
+</html>

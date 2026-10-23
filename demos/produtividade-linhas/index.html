@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="../_comum/relogio-demo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Produtividade por Linha | portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="../_comum/chart.umd.min.js"></script>
+<script src="../_comum/chartjs-plugin-datalabels.min.js" onerror="console.warn('datalabels CDN indisponivel')"></script>
+<script>
+document.write('<link rel="stylesheet" href="styles.css?v=' + Date.now() + '">');
+</script>
+</head>
+<body>
+
+<div class="page" id="tv-root">
+
+  <div class="top-card">
+
+    <header class="header">
+      <div class="header-left">
+        <img src="../_comum/logo-demo.svg" alt="Demonstração com dados fictícios">
+      </div>
+      <div class="header-title">
+        <h1>Produtividade por Linha</h1>
+        <span id="header-subtitle">SLA 01 · Conferência de recebimento</span>
+      </div>
+      <div class="header-right">
+        <select class="filtro-select day-select" id="sel-dia"></select>
+        <div class="updated-tag" id="updated-tag">Atualizando…</div>
+      </div>
+    </header>
+
+    <div class="chart-box">
+
+      <div class="chart-header">
+        <div class="kpi-col">
+          <div class="kpi-card">
+            <div class="kpi-label">% Atendimento</div>
+            <div class="kpi-value" id="kpi-pct">–</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Lotes recebidos</div>
+            <div class="kpi-value" id="kpi-rec">–</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Dentro da Meta</div>
+            <div class="kpi-value ok" id="kpi-den">–</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Atrasado</div>
+            <div class="kpi-value nok" id="kpi-fora">–</div>
+          </div>
+        </div>
+
+        <div class="kpi-col">
+          
+          <div class="kpi-card kpi-tipo">
+            <div class="kpi-label">Fechada × Fracionada</div>
+            <div class="kpi-value"><span id="kpi-am">–</span><span class="kpi-sep">/</span><span id="kpi-bt">–</span></div>
+            <div class="tipo-barra" id="tipo-barra" aria-hidden="true"><i class="tipo-am" id="tipo-am"></i></div>
+            <div class="tipo-legenda"><span id="kpi-am-pct"></span><span id="kpi-bt-pct"></span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Paletes</div>
+            <div class="kpi-value" id="kpi-plts">–</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Viagens</div>
+            <div class="kpi-value" id="kpi-viagens">–</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-toolbar">
+        <div class="chart-titulo"><strong>Lotes por hora</strong></div>
+        <div class="legend" id="legend">
+          <span class="leg-item"><i class="leg-box leg-dentro"></i>Dentro da Meta</span>
+          <span class="leg-item"><i class="leg-box leg-fora"></i>Atrasado</span>
+          <button type="button" class="leg-item leg-toggle" data-serie="entrada" aria-pressed="true"
+                  title="Mostrar/ocultar a linha de entrada"><i class="leg-line leg-entrada"></i>Entrada total (chegada)</button>
+          <button type="button" class="leg-item leg-toggle" data-serie="volume" aria-pressed="true"
+                  title="Mostrar/ocultar a linha de volumes (eixo da direita)"><i class="leg-line leg-volume"></i>Volumes recebidos</button>
+          <button type="button" class="leg-item leg-toggle" data-serie="meta" id="leg-meta" aria-pressed="true"
+                  title="Mostrar/ocultar a linha de meta"><i class="leg-line leg-meta"></i>Meta (capacidade/hora)</button>
+        </div>
+      </div>
+
+      <div class="chart-area">
+        <div class="chart-scroll-wrap" id="chart-scroll-wrap">
+          <canvas id="grafico-main" aria-label="Gráfico de lotes recebidos por hora, dentro da meta e atrasados"></canvas>
+        </div>
+        <div id="sem-dado-msg" class="sem-dado-msg">Sem recebimento para o período e filtros selecionados</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="origem-card">
+      <div class="origem-header" id="tabela-titulo">Desempenho por linha</div>
+      <div class="origem-scroll tabela-scroll">
+        <table class="origem-table" id="tabela-main"></table>
+      </div>
+
+      <div class="filters-row">
+        <div class="filter-item">
+          <div class="filter-item-label">Turno</div>
+          <select class="filtro-select" id="sel-turno">
+            <option value="">Todos</option>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <div class="filter-item-label">Tipo de lote</div>
+          <select class="filtro-select" id="sel-tipo">
+            <option value="">Todas</option>
+            <option value="Fechada">Fechada</option>
+            <option value="Fracionada">Fracionada</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<nav class="tab-bar" id="tab-bar"></nav>
+
+<div class="viagem-modal" id="viagem-modal" hidden>
+  <div class="viagem-modal-card" role="dialog" aria-modal="true" aria-labelledby="viagem-modal-titulo">
+    <div class="viagem-modal-head">
+      <div>
+        <h2 id="viagem-modal-titulo">–</h2>
+        <span id="viagem-modal-sub"></span>
+      </div>
+      <button type="button" class="viagem-modal-fechar" id="viagem-modal-fechar" aria-label="Fechar">&times;</button>
+    </div>
+    <div id="viagem-det"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var v = Date.now();
+  document.write('<script src="data.js?v=' + v + '"><\/script>');
+  document.write('<script src="app.js?v=' + v + '"><\/script>');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="../_comum/relogio-demo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tonelagem | Demo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="../_comum/chart.umd.min.js"></script>
+<script src="../_comum/chartjs-plugin-datalabels.min.js"></script>
+<script>
+document.write('<link rel="stylesheet" href="styles.css?v=' + Date.now() + '">');
+</script>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="top-card">
+    
+    <header class="header">
+      <div class="header-left">
+        <img src="../_comum/logo-demo.svg" alt="Demonstração com dados fictícios">
+      </div>
+      <div class="header-title">
+        <h1 id="page-title">Tonelagem</h1>
+        <span>Demonstração · dados fictícios</span>
+      </div>
+      <div class="header-right">
+        <div class="date-filter">
+          <label for="filtro-data-de">Data</label>
+          <div class="date-filter-inputs">
+            <input type="date" id="filtro-data-de">
+            <span>–</span>
+            <input type="date" id="filtro-data-ate">
+          </div>
+        </div>
+        <div class="updated-tag" id="updated-tag">Atualizando…</div>
+      </div>
+    </header>
+
+    <div class="top-row" id="top-row-resumo-faixa">
+      <div class="card-resumo">
+        <table class="resumo" id="tabela-resumo">
+          <thead>
+            <tr><th>Armazém</th><th>Tonelagem</th><th>Projeção</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="card-faixa">
+        <div class="faixa-legend">
+          <span><i class="dot atual"></i> Nível de volume atual</span>
+          <span><i class="dot projetado"></i> Nível de volume projetado</span>
+        </div>
+        <div class="faixa-track-wrap">
+          <div class="faixa-track" id="faixa-track">
+            <div class="faixa-fill-clip">
+              <div class="faixa-fill-atual" id="faixa-fill-atual"></div>
+              <div class="faixa-fill-projetado" id="faixa-fill-projetado"></div>
+            </div>
+          </div>
+        </div>
+        <div class="faixa-values">
+          <span class="v-atual">Atual: <b id="faixa-val-atual">–</b></span>
+          <span class="v-projetado">Projeção: <b id="faixa-val-projetado">–</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid" id="view-mes-atual">
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Lotes · Entrada
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Recebido</span>
+          <span><i class="dot entregue"></i> Entregue</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-lote-ent"><canvas id="chart-lote-ent"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Lotes · Saída
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Recebido</span>
+          <span><i class="dot entregue"></i> Entregue</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-lote-sai"><canvas id="chart-lote-sai"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Tonelagem Entrada
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Ton. Recebidas</span>
+          <span><i class="dot entregue"></i> Ton. Entregues</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-ton-ent"><canvas id="chart-ton-ent"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Tonelagem Saída
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Ton. Recebidas</span>
+          <span><i class="dot entregue"></i> Ton. Entregues</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-ton-sai"><canvas id="chart-ton-sai"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="charts-grid" id="view-comparativo-mensal" style="display:none">
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Lotes · Entrada
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Lotes recebidos</span>
+          <span><i class="dot entregue"></i> Lotes entregues</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-cmp-lote-ent"><canvas id="chart-cmp-lote-ent"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Lotes · Saída
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Lotes recebidos</span>
+          <span><i class="dot entregue"></i> Lotes entregues</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-cmp-lote-sai"><canvas id="chart-cmp-lote-sai"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Tonelagem Entrada
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Ton. Recebidas</span>
+          <span><i class="dot entregue"></i> Ton. Entregues</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-cmp-ton-ent"><canvas id="chart-cmp-ton-ent"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Tonelagem Saída
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Ton. Recebidas</span>
+          <span><i class="dot entregue"></i> Ton. Entregues</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-cmp-ton-sai"><canvas id="chart-cmp-ton-sai"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="charts-grid-anual" id="view-comparativo-anual" style="display:none">
+    <div class="card chart-panel">
+      <div class="chart-panel-title">
+        Tonelagem Ano x Ano
+        <span class="chart-legend-inline">
+          <span><i class="dot recebido"></i> Ton. recebidas · Entrada</span>
+          <span><i class="dot entregue"></i> Ton. recebidas · Saída</span>
+        </span>
+      </div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-anual-ent-sai"><canvas id="chart-anual-ent-sai"></canvas></div></div>
+    </div>
+
+    <div class="card chart-panel">
+      <div class="chart-panel-title">Tonelagem Total</div>
+      <div class="chart-canvas-wrap"><div class="chart-canvas-inner" id="inner-chart-anual-total"><canvas id="chart-anual-total"></canvas></div></div>
+    </div>
+  </div>
+
+</div>
+
+<nav class="tab-bar" id="tab-bar">
+  <div class="tab-bar-scroll" id="tab-bar-scroll">
+    <button class="tab-btn active" data-view="mes-atual" id="tab-mes-atual">Mês Atual</button>
+    <button class="tab-btn" id="tab-comparativo-mensal">Comparativo Mensal</button>
+    <button class="tab-btn" id="tab-comparativo-anual">Comparativo Anual</button>
+    <span class="tab-divider"></span>
+    <span id="tab-meses-container"></span>
+  </div>
+</nav>
+
+<script>
+document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
+</script>
+<script>
+document.write('<script src="app.js?v=' + Date.now() + '"><\/script>');
+</script>
+</body>
+</html>

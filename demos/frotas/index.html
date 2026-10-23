@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="../_comum/relogio-demo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frotas · Financeiro | portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="../_comum/chart.umd.min.js"></script>
+<script src="../_comum/chartjs-plugin-datalabels.min.js" onerror="console.warn('datalabels CDN indisponivel')"></script>
+<script>
+document.write('<link rel="stylesheet" href="styles.css?v=' + Date.now() + '">');
+</script>
+</head>
+<body>
+
+<div class="page" id="tv-root">
+
+  <div class="top-card">
+
+    <header class="header">
+      <div class="header-left">
+        <img src="../_comum/logo-demo.svg" alt="Demonstração com dados fictícios">
+      </div>
+      <div class="header-title">
+        <h1>Frotas · Financeiro</h1>
+        <span id="header-subtitle">Visão Geral</span>
+      </div>
+      <div class="header-right">
+        <select class="filtro-select day-select" id="sel-periodo"></select>
+        <div class="updated-tag" id="updated-tag">Atualizando…</div>
+      </div>
+    </header>
+
+    <div class="view active" id="view-geral">
+
+      <div class="kpi-row kpi-flow">
+        <div class="kpi-card">
+          <div class="kpi-icon">R$</div>
+          <div class="kpi-label">Gasto Total</div>
+          <div class="kpi-value" id="kpi-gasto-total">–</div>
+        </div>
+        <div class="kpi-flow-arrow">›</div>
+        <div class="kpi-card">
+          <div class="kpi-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 1 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 1 0 0-4V8z"/><line x1="9" y1="7" x2="9" y2="17" stroke-dasharray="2 2"/></svg>
+          </div>
+          <div class="kpi-label">Ticket Médio</div>
+          <div class="kpi-value" id="kpi-ticket-medio">–</div>
+        </div>
+        <div class="kpi-flow-arrow">›</div>
+        <div class="kpi-card">
+          <div class="kpi-icon">
+            <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="8" y1="18" x2="20" y2="18"/><circle cx="4" cy="6" r="1.3"/><circle cx="4" cy="12" r="1.3"/><circle cx="4" cy="18" r="1.3"/></svg>
+          </div>
+          <div class="kpi-label">Ocorrências</div>
+          <div class="kpi-value" id="kpi-ocorrencias">–</div>
+        </div>
+        <div class="kpi-flow-arrow">›</div>
+        <div class="kpi-card">
+          <div class="kpi-icon" id="icone-variacao">
+            <svg viewBox="0 0 24 24"><polyline points="3,17 9,11 13,15 21,7"/><polyline points="14,7 21,7 21,14"/></svg>
+          </div>
+          <div class="kpi-label">Var. vs Mês Anterior</div>
+          <div class="kpi-value" id="kpi-variacao">–</div>
+        </div>
+      </div>
+
+      <div class="split-row split-row-fixed">
+        <div class="chart-card chart-card-wide">
+          <div class="chart-card-header">
+            Evolução de Gasto Mensal
+            <span class="chart-card-legend">
+              <i class="leg-swatch leg-swatch-bar"></i>Gasto
+              <i class="leg-swatch leg-swatch-line"></i>Tendência
+            </span>
+          </div>
+          <div class="chart-area">
+            <div class="chart-scroll-wrap" id="chart-scroll-wrap">
+              <canvas id="grafico-evolucao"></canvas>
+            </div>
+            <div id="sem-dado-msg" class="sem-dado-msg">Sem dados para o período selecionado</div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">Top Categorias de Gasto</div>
+          <div class="chart-area chart-area-donut">
+            <canvas id="grafico-categorias-donut"></canvas>
+            <div class="donut-center" id="donut-center">
+              <div class="donut-center-label" id="donut-center-label">–</div>
+              <div class="donut-center-valor" id="donut-center-valor">–</div>
+            </div>
+            <div id="sem-dado-donut" class="sem-dado-msg">Sem dados</div>
+          </div>
+          <div class="donut-legend" id="donut-legend"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">Gasto por Classificação</div>
+          <div class="chart-area chart-area-donut">
+            <canvas id="grafico-classificacao-donut"></canvas>
+            <div class="donut-center" id="donut-center-classif">
+              <div class="donut-center-label" id="donut-center-classif-label">–</div>
+              <div class="donut-center-valor" id="donut-center-classif-valor">–</div>
+            </div>
+            <div id="sem-dado-donut-classif" class="sem-dado-msg">Sem dados</div>
+          </div>
+          <div class="donut-legend" id="donut-legend-classif"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">Gasto por Fornecedor</div>
+          <div class="chart-area chart-area-donut">
+            <canvas id="grafico-fornecedor-donut"></canvas>
+            <div class="donut-center" id="donut-center-fornecedor">
+              <div class="donut-center-label" id="donut-center-fornecedor-label">–</div>
+              <div class="donut-center-valor" id="donut-center-fornecedor-valor">–</div>
+            </div>
+            <div id="sem-dado-donut-fornecedor" class="sem-dado-msg">Sem dados</div>
+          </div>
+          <div class="donut-legend" id="donut-legend-fornecedor"></div>
+        </div>
+      </div>
+
+      <div class="detail-table-card">
+        <div class="chart-card-header">Detalhamento por Frota — Todas as Ocorrências</div>
+        <div class="detail-table-scroll">
+          <table class="detail-table" id="detalhe-geral"></table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="view" id="view-frota">
+
+      <div class="kpi-row kpi-row-compact">
+        <div class="kpi-card">
+          <div class="kpi-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="7" width="13" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+          </div>
+          <div class="kpi-label">Frota c/ Maior Gasto</div>
+          <div class="kpi-value" id="kpi-top-frota">–</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 10.5V6a2 2 0 0 0-2-2h-4.5a2 2 0 0 0-1.4.6L3.6 13.1a2 2 0 0 0 0 2.8l4.5 4.5a2 2 0 0 0 2.8 0L19.4 11.9a2 2 0 0 0 .6-1.4z"/><circle cx="15.5" cy="8.5" r="1.3"/></svg>
+          </div>
+          <div class="kpi-label">Categoria c/ Maior Gasto</div>
+          <div class="kpi-value" id="kpi-top-categoria">–</div>
+        </div>
+      </div>
+
+      <div class="filtro-ativo" id="filtro-frota-chip" style="display:none;">
+        <span>Filtrando por frota:</span>
+        <strong id="filtro-frota-nome"></strong>
+        <button type="button" id="btn-limpar-filtro-frota" title="Limpar filtro">✕</button>
+      </div>
+
+      <div class="split-row split-row-fixed">
+        <div class="detail-table-card">
+          <div class="chart-card-header">Detalhamento Completo por Frota · clique pra filtrar</div>
+          <div class="detail-table-scroll">
+            <table class="detail-table" id="detalhe-frota"></table>
+          </div>
+        </div>
+        <div class="detail-table-card">
+          <div class="chart-card-header" id="header-categoria-tabela">Detalhamento Completo por Categoria</div>
+          <div class="detail-table-scroll">
+            <table class="detail-table" id="detalhe-categoria"></table>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-table-card">
+        <div class="chart-card-header" id="header-ocorrencias-tabela">Histórico de Ocorrências</div>
+        <div class="detail-table-scroll">
+          <table class="detail-table detail-table-ocorrencias" id="detalhe-ocorrencias"></table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<nav class="tab-bar" id="tab-bar"></nav>
+
+<script>
+(function() {
+  var v = Date.now();
+  document.write('<script src="data.js?v=' + v + '"><\/script>');
+  document.write('<script src="app.js?v=' + v + '"><\/script>');
+})();
+</script>
+</body>
+</html>

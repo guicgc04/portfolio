@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="../_comum/relogio-demo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestão Operacional | Demo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+document.write('<link rel="stylesheet" href="styles.css?v=' + Date.now() + '">');
+</script>
+</head>
+<body>
+
+<div class="page" id="tv-root">
+
+  <header class="header">
+    <div class="header-left">
+      <img src="../_comum/logo-demo.svg" alt="Demonstração com dados fictícios">
+    </div>
+    <div class="header-title">
+      <h1>Gestão Operacional</h1>
+      <span id="periodo-label"></span>
+    </div>
+    <div class="header-right">
+      <div class="updated-tag" id="updated-tag">Atualizando…</div>
+    </div>
+  </header>
+
+  <div class="view active" id="view-classificacao">
+    <div class="view-card">
+
+      <div class="info-linha rk-toolbar">
+        <div class="rk-filtros">
+          
+          <div class="custom-select" id="modo-filter-wrap">
+            <button class="custom-select-btn" id="modo-filter-btn" type="button">
+              <span id="modo-filter-label">Líderes</span>
+              <svg class="custom-select-chevron" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="custom-select-dropdown" id="modo-filter-dropdown"></div>
+          </div>
+
+          <div class="custom-select" id="turno-filter-wrap">
+            <button class="custom-select-btn" id="turno-filter-btn" type="button">
+              <span id="turno-filter-label">Geral</span>
+              <svg class="custom-select-chevron" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="custom-select-dropdown" id="turno-filter-dropdown"></div>
+          </div>
+        </div>
+
+        <div class="custom-select" id="dia-filter-wrap">
+          <button class="custom-select-btn" id="dia-filter-btn" type="button">
+            <span id="dia-filter-label">Mês inteiro</span>
+            <svg class="custom-select-chevron" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="custom-select-dropdown custom-select-dropdown--right" id="dia-filter-dropdown"></div>
+        </div>
+        <div class="rk-destaque" id="rk-destaque"></div>
+      </div>
+
+      <div class="table-wrap table-wrap-scroll">
+        <table class="tabela-ranking">
+          <thead>
+            <tr id="tabela-ranking-head"></tr>
+          </thead>
+          <tbody id="tabela-ranking-body"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="view" id="view-detalhamento">
+    <div class="view-card">
+
+      <div class="info-linha detalhe-info-linha" id="detalhe-info-linha">
+        <div class="detalhe-info-esquerda">
+          <div class="seletor-lider" id="seletor-lider-wrap">
+            <label for="seletor-lider">Líder</label>
+            <select id="seletor-lider"></select>
+          </div>
+          <div class="detalhe-lider" id="detalhe-lider"></div>
+        </div>
+        <div class="detalhe-info-direita">
+          <div class="seletor-lider" id="seletor-dia-detalhe-wrap">
+            <label for="seletor-dia-detalhe">Dia</label>
+            <select id="seletor-dia-detalhe"></select>
+          </div>
+          <button class="btn-ajuda" id="btn-ajuda" type="button" aria-label="Como funciona o campeonato" data-tooltip="Como funciona">?</button>
+        </div>
+      </div>
+
+      <div class="detalhe-aviso-sem-retrato" id="detalhe-sem-retrato" hidden>
+        Essa pessoa ainda não tinha retrato registrado nesse dia (provavelmente entrou no time depois) - mostrando os cards zerados.
+      </div>
+
+      <div class="detalhe-grid">
+
+        <div class="subcard subcard-evolucao">
+          <h3>Evolução no mês</h3>
+          <div class="grafico-evolucao-scroll">
+            <svg id="grafico-evolucao"></svg>
+          </div>
+        </div>
+
+        <div class="subcard subcard-areas">
+          <h3>Aproveitamento por área</h3>
+          <div class="gauges-scroll">
+            <div class="gauges-row" id="gauges-areas"></div>
+          </div>
+        </div>
+
+        <div class="subcard subcard-foco">
+          <h3>Onde focar pra ganhar mais pontos</h3>
+          <div class="foco-row" id="foco-row"></div>
+        </div>
+
+        <div class="subcard subcard-eventos">
+          <h3>Composição completa da pontuação</h3>
+          <div class="table-wrap table-wrap-scroll">
+            <table class="tabela-eventos">
+              <thead>
+                <tr>
+                  <th class="ev-th-area">Área</th>
+                  <th>Pilar</th>
+                  <th>Item</th>
+                  <th class="ev-th-resp">Responsável</th>
+                  <th class="ev-th-pts">Pontos</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-eventos-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<nav class="tab-bar" id="tab-bar">
+  <div class="tab-follow" id="tab-follow"></div>
+  <button class="tab-btn active" data-view="classificacao">
+    <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a2 2 0 0 0 2 4M17 6h3a2 2 0 0 1-2 4"/></svg>
+    <span class="tab-label">Classificação</span>
+  </button>
+  <button class="tab-btn" data-view="detalhamento">
+    <svg viewBox="0 0 24 24"><path d="M4 19V9M12 19V5M20 19v-7"/></svg>
+    <span class="tab-label">Detalhamento</span>
+  </button>
+</nav>
+
+<div class="ajuda-overlay" id="ajuda-overlay" hidden>
+  <div class="ajuda-card" role="dialog" aria-modal="true" aria-labelledby="ajuda-titulo">
+    <div class="ajuda-topo">
+      <h2 id="ajuda-titulo">Como funciona o campeonato</h2>
+      <button class="ajuda-fechar" id="ajuda-fechar" type="button" aria-label="Fechar">×</button>
+    </div>
+    <div class="ajuda-corpo" id="ajuda-corpo"></div>
+  </div>
+</div>
+
+<script>
+document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
+</script>
+
+<script>
+document.write('<script src="historico.js?v=' + Date.now() + '" onerror="window.HISTORICO_DIARIO={}"><\/script>');
+</script>
+<script>
+document.write('<script src="app.js?v=' + Date.now() + '"><\/script>');
+</script>
+</body>
+</html>
