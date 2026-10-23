@@ -132,7 +132,7 @@ PROJETOS = [
     },
 ]
 
-LINKEDIN = "https://www.linkedin.com/in/guilherme-cau%C3%A3-genova-chiaradia-0ba5562b8/"
+LINKEDIN = "https://www.linkedin.com/in/caua-chiaradia/"
 
 ICONE = {
     "inicio": '<path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/>',
