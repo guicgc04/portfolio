@@ -1,0 +1,53 @@
+/* ============================================================
+   Portfólio Cauã Chiaradia · projeto.css
+   Páginas de cada dashboard: cabeçalho, moldura da demo, explicações e fluxo.
+   ============================================================ */
+
+/* ---------- páginas de projeto ---------- */
+.voltar { display: inline-block; margin-bottom: 26px; text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.voltar:hover { color: var(--accent-ink); }
+.proj-cab { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: -18px 0 16px; }
+.proj-resumo { text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: 300; max-width: 52ch; margin: 0 auto; line-height: 1.4; }
+
+.browser { background: var(--black); padding: 0 0 10px; box-shadow: var(--sombra); }
+.browser__bar { display: flex; align-items: center; gap: 14px; padding: 12px 14px; color: #fff; }
+.browser__dots { display: flex; gap: 6px; }
+.browser__dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.browser__dots i:first-child { background: var(--accent); }
+.browser__label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); flex: 1; }
+.browser__full { font-size: 11px; padding: 8px 14px; }
+.browser__view { margin: 0 10px; overflow: hidden; position: relative; background: #fff; }
+.browser__frame { display: block; border: 0; width: 100%; height: 70vh; transform-origin: 0 0; }
+.demo-nota { display: none; text-align: center; font-size: 13px; color: var(--ink-3); margin: 12px 0 0; }
+
+.explica { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.explica article { background: var(--white); padding: 26px 24px; }
+.explica article:first-child { background: var(--black); color: #fff; }
+.explica .kicker { color: var(--accent-ink); margin-bottom: 12px; }
+.explica article:first-child .kicker { color: var(--accent-dark); }
+.explica p:last-child { margin: 0; font-size: 15.5px; line-height: 1.6; }
+
+.experimente { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
+.experimente .titulo-caixa { margin: 0; font-size: clamp(24px, 2.8vw, 38px); font-stretch: 112%; text-align: left; overflow-wrap: normal; }
+.checklist { list-style: none; margin: 0; padding: 0; }
+.checklist li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding: 13px 0; border-bottom: 1px dashed var(--line); font-size: 15.5px; }
+.checklist li::before { content: "✓"; width: 26px; height: 26px; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); font-weight: 900; font-size: 13px; }
+
+.proj-nav { display: grid; grid-template-columns: 1fr 1fr; }
+.proj-nav a { padding: 34px clamp(22px, 4vw, 56px); text-decoration: none; background: var(--black); color: #fff; transition: background .2s, color .2s; }
+.proj-nav a + a { text-align: right; border-left: 1px dashed rgba(255,255,255,.3); }
+.proj-nav a:hover { background: var(--accent); color: var(--on-accent); }
+.proj-nav .kicker { opacity: .7; margin-bottom: 8px; }
+.proj-nav strong { display: block; font-size: clamp(18px, 2.4vw, 28px); font-weight: 900; font-stretch: 118%; text-transform: uppercase; line-height: 1.1; }
+/* ---------- fluxo "Como funciona" ---------- */
+.fluxo { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: passo; }
+.fluxo li {
+  counter-increment: passo; position: relative;
+  padding: 22px 22px 24px; border: 1px dashed rgba(255,255,255,.35); margin-left: -1px;
+  color: rgba(255,255,255,.75); font-size: 14.5px; line-height: 1.55;
+}
+.fluxo li::before {
+  content: "0" counter(passo); display: block; color: var(--accent-dark);
+  font-size: 40px; font-weight: 900; font-stretch: 125%; line-height: 1; margin-bottom: 14px;
+}
+.fluxo__tit { display: block; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }

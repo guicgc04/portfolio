@@ -1,3 +1,6 @@
+// Portfólio Cauã Chiaradia · home.js
+// Página inicial: conteúdo e janela dos cards de automação, e filtros do portfólio.
+
 // Conteúdo dos estudos de caso (sem dados reais da operação)
 const CASOS = {
   rpa: {

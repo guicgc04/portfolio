@@ -1,3 +1,6 @@
+// Portfólio Cauã Chiaradia · projeto.js
+// Páginas de dashboard: encaixa a demo interativa na moldura.
+//
 // Mostra o dashboard no tamanho para o qual ele foi desenhado (1440 × 900)
 // e reduz proporcionalmente para caber na página. No celular, usa o layout
 // responsivo do próprio dashboard, sem reduzir.

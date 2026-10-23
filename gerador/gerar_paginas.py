@@ -159,7 +159,7 @@ def lado(base="", ativo=None):
         for i, n in SECOES)
     return f'''<aside class="lado">
       <a class="lado__topo" href="{base}#inicio" aria-label="Início">
-        <img class="lado__foto" src="{raiz}img/caua-mini.webp" alt="" width="96" height="96">
+        <img class="lado__foto" src="{raiz}assets/img/caua-mini.webp" alt="" width="96" height="96">
         <span class="lado__nome">Cauã Chiaradia</span>
         <span class="lado__cargo">Processos · Dados · Automação</span>
       </a>
@@ -186,7 +186,10 @@ HEAD = '''<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{base}style.css?v=5">
+  <link rel="stylesheet" href="{base}assets/css/base.css?v=6">
+  <link rel="stylesheet" href="{base}assets/css/layout.css?v=6">
+  <link rel="stylesheet" href="{base}assets/css/projeto.css?v=6">
+  <link rel="stylesheet" href="{base}assets/css/responsivo.css?v=6">
 </head>'''
 
 
@@ -275,8 +278,8 @@ def pagina(i, p):
       <footer class="rodape"><span>Cauã Chiaradia</span><span>Todos os números desta demo são fictícios</span></footer>
     </main>
   </div>
-  <script src="../comum.js?v=5"></script>
-  <script src="../projeto.js?v=5"></script>
+  <script src="../assets/js/comum.js?v=6"></script>
+  <script src="../assets/js/projeto.js?v=6"></script>
 </body>
 </html>
 '''

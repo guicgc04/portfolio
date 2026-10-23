@@ -1,4 +1,5 @@
-// Comportamentos compartilhados: menu ativo e animação de entrada.
+// Portfólio Cauã Chiaradia · comum.js
+// Usado em todas as páginas: marca a seção ativa no menu e anima a entrada dos elementos.
 (function () {
   // Marca no menu a seção que está na tela (só na home)
   var links = document.querySelectorAll("[data-secao]");

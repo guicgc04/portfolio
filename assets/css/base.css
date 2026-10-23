@@ -1,0 +1,90 @@
+/* ============================================================
+   Portfólio Cauã Chiaradia · base.css
+   Base: cores, reset, tipografia, botões e animações. Carregado em todas as páginas.
+   ============================================================ */
+
+:root {
+  --accent: #6d4dff;        /* preenchimento (barra lateral, tags, botões) */
+  --on-accent: #ffffff;     /* texto sobre o preenchimento */
+  --nav-ativo: #0c0c0c;     /* item ativo do menu lateral */
+  --accent-ink: #5a39f0;    /* destaque em texto sobre fundo claro */
+  --accent-dark: #a08cff;   /* destaque sobre fundo escuro */
+
+  --ink: #141414;
+  --ink-2: #4a4a4a;
+  --ink-3: #6f6f6f;
+  --paper: #e8e8e6;
+  --paper-2: #f4f4f2;
+  --white: #ffffff;
+  --black: #111111;
+  --black-2: #1c1c1c;
+  --line: #b9b9b5;
+
+  --fonte: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --lado: 260px;
+  --sombra: 0 18px 40px -18px rgba(0, 0, 0, .35);
+}
+
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img, svg { display: block; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; }
+
+.skip { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--black); color: #fff; padding: 8px 14px; }
+.skip:focus { left: 8px; }
+
+
+/* ---------- tipografia ---------- */
+.kicker {
+  font-size: 12px; font-weight: 800; font-stretch: 110%;
+  letter-spacing: .14em; text-transform: uppercase; margin: 0;
+}
+.tag {
+  display: inline-block; background: var(--accent); color: var(--on-accent);
+  font-size: 11px; font-weight: 800; font-stretch: 110%; letter-spacing: .1em;
+  text-transform: uppercase; padding: 3px 9px; line-height: 1.5;
+}
+.tag--escura { background: var(--black); color: #fff; }
+.tag--linha { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+
+.titulo-caixa {
+  border: 1px dashed #8d8d89;
+  padding: clamp(14px, 2vw, 22px) 20px;
+  margin: 0 auto clamp(28px, 4vw, 44px);
+  text-align: center;
+  font-size: clamp(24px, 5.4vw, 70px); overflow-wrap: anywhere;
+  font-weight: 900; font-stretch: 125%;
+  letter-spacing: .02em; line-height: 1;
+  text-transform: uppercase;
+}
+.titulo-caixa--esq { text-align: left; }
+/* ---------- botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: var(--on-accent);
+  border: 0; border-radius: 999px; padding: 12px 22px;
+  font-size: 12px; font-weight: 800; font-stretch: 112%;
+  letter-spacing: .1em; text-transform: uppercase; text-decoration: none;
+  cursor: pointer; transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -10px var(--accent); }
+.btn--escuro { background: var(--black); color: #fff; }
+.btn--escuro:hover { box-shadow: 0 10px 22px -10px #000; }
+.btn--linha { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+/* ---------- animação de entrada ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .surge { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .surge.visivel { opacity: 1; transform: none; }
+}
